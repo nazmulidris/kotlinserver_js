@@ -11,7 +11,7 @@ This is similar to what `webpack` would do for a pure JS project.
 # Run it
 
 `node lib/index.js` actually runs node and starts the server on
-port [`7000`](http://localhost:7000).
+port [`3000`](http://localhost:3000).
 
 # Todo
 

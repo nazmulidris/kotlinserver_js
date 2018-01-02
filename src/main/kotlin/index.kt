@@ -27,7 +27,8 @@ fun main(args: Array<String>) {
         res.send("express running kotlin code!")
     })
 
-    app.listen(7000, {
-        println("Listening on port 7000")
+    val port = 3000
+    app.listen(port, {
+        println("Listening on port $port")
     })
 }
