@@ -1,0 +1,25 @@
+{
+  "name": "kotlinserver_js",
+  "version": "1.0.0",
+  "description": "Kotlin code working w/ JS code",
+  "main": "bundle.js",
+  "scripts": {
+    "start": "node lib/index.js",
+    "build": "gradle build",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nazmulidris/kotlinserver_js.git"
+  },
+  "author": "Nazmul Idris",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nazmulidris/kotlinserver_js/issues"
+  },
+  "homepage": "https://github.com/nazmulidris/kotlinserver_js#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "kotlin": "^1.2.10"
+  }
+}
