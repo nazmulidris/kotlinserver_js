@@ -1,3 +1,5 @@
+import kotlin.js.json
+
 /*
  * Copyright 2018 Nazmul Idris All rights reserved.
  *
@@ -14,21 +16,50 @@
  * limitations under the License.
  */
 
+// Declare external JS functions / objects here
 external fun require(module: String): dynamic
 
+external val process: dynamic
+
+// Main entry point of node program
 fun main(args: Array<String>) {
     println("Hello JavaScript!")
 
     val express = require("express")
     val app = express()
 
-    app.get("/", { req, res ->
-        res.type("text/plain")
-        res.send("express running kotlin code!")
-    })
+    // Middleware - serve static pages
+    app.use(
+            express.static(
+                    "public",
+                    json(Pair("index", "index.html"))
+            )
+    )
 
-    val port = 3000
-    app.listen(port, {
-        println("Listening on port $port")
-    })
+    // Routes
+    app.get(
+            "/hola",
+            { req, res ->
+                res.type("text/plain")
+                res.send("hola worlds!")
+            }
+    )
+
+    app.get("/hola/:name",
+            { req: dynamic, res: dynamic ->
+                var name = req.params.name
+                res.type("text/plain")
+                res.send("hola $name")
+            }
+    )
+
+    // Start the server
+    getPort().let {
+        app.listen(it) { println("listening on port $it") }
+    }
+
+}
+
+fun getPort(): Int {
+    return process.env.PORT ?: 3000
 }
