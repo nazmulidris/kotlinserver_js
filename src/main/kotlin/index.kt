@@ -28,8 +28,12 @@ fun main(args: Array<String>) {
     val express = require("express")
     val app = express()
 
+    // Support for file upload
+    val fileUpload = require("express-fileupload")
+    app.use(fileUpload())
+
     // Template engine - load markdown support
-    var markedejs = require("markedejs");
+    val markedejs = require("markedejs");
     app.engine(".md", markedejs.__express);
 
     // Middleware - serve static pages
@@ -61,7 +65,32 @@ fun main(args: Array<String>) {
             { req: dynamic, res: dynamic ->
                 res.render(
                         "hello.md",
-                        json(Pair("name","Nazmul"), Pair("age","43")))
+                        json(Pair("name", "Nazmul"), Pair("age", "43")))
+            }
+    )
+
+    app.post("/fileupload",
+            { req: dynamic, res: dynamic ->
+                if (isEmptyJSO(req.files)) {
+                    res.send("No files were uploaded");
+                } else {
+                    // The name of the input field (i.e. "csv_file") is used to
+                    // retrieve the uploaded file
+                    val file = req.files.csv_file
+                    val fileName = file.name
+                    val fileType = file.mimetype
+                    val fileData = file.data
+                    val fileDataStr = fileData.toString("utf8")
+
+                    val sb = StringBuilder()
+                    with(sb) {
+                        append("fileName: $fileName")
+                        append("fileType: $fileType")
+                        append("fileData: $fileData")
+                        append("fileDataStr: $fileDataStr")
+                    }
+                    res.send(sb.toString())
+                }
             }
     )
 
@@ -70,6 +99,11 @@ fun main(args: Array<String>) {
         app.listen(it) { println("listening on port $it") }
     }
 
+}
+
+/** Checks to see if the JS Object has no keys / values */
+fun isEmptyJSO(obj: Any): Boolean {
+    return js("if (Object.keys(obj) == 0) return true; else return false;")
 }
 
 fun getPort(): Int {

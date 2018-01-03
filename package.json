@@ -20,6 +20,7 @@
   "homepage": "https://github.com/nazmulidris/kotlinserver_js#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "express-fileupload": "^0.3.0",
     "kotlin": "^1.2.10",
     "markedejs": "^0.1.0"
   },
