@@ -28,6 +28,10 @@ fun main(args: Array<String>) {
     val express = require("express")
     val app = express()
 
+    // Template engine - load markdown support
+    var markedejs = require("markedejs");
+    app.engine(".md", markedejs.__express);
+
     // Middleware - serve static pages
     app.use(
             express.static(
@@ -50,6 +54,14 @@ fun main(args: Array<String>) {
                 var name = req.params.name
                 res.type("text/plain")
                 res.send("hola $name")
+            }
+    )
+
+    app.get("/md",
+            { req: dynamic, res: dynamic ->
+                res.render(
+                        "hello.md",
+                        json(Pair("name","Nazmul"), Pair("age","43")))
             }
     )
 

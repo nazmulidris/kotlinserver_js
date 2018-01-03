@@ -26,3 +26,4 @@ port [`3000`](http://localhost:3000).
 - [Calling JS from KT](https://kotlinlang.org/docs/reference/js-interop.html)
 - [Express JS API Tutorial](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction)
 - [Express API docs](https://expressjs.com/en/guide/routing.html)
+- [Express Template Engine for Markdown](https://www.npmjs.com/package/markedejs)

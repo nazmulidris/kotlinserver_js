@@ -20,7 +20,8 @@
   "homepage": "https://github.com/nazmulidris/kotlinserver_js#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "kotlin": "^1.2.10"
+    "kotlin": "^1.2.10",
+    "markedejs": "^0.1.0"
   },
   "engines": {
     "_comment": "Required for deployment to heroku",
