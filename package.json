@@ -4,7 +4,7 @@
   "description": "Kotlin code working w/ JS code",
   "main": "bundle.js",
   "scripts": {
-    "start": "node lib/index.js",
+    "start": "nodemon lib/index.js",
     "build": "gradle build",
     "prepublish": "npm run build"
   },
@@ -22,7 +22,8 @@
     "express": "^4.16.2",
     "express-fileupload": "^0.3.0",
     "kotlin": "^1.2.10",
-    "markedejs": "^0.1.0"
+    "markedejs": "^0.1.0",
+    "ya-csv": "^0.10.1"
   },
   "engines": {
     "_comment": "Required for deployment to heroku",

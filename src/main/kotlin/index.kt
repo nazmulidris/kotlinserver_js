@@ -79,17 +79,33 @@ fun main(args: Array<String>) {
                     val file = req.files.csv_file
                     val fileName = file.name
                     val fileType = file.mimetype
-                    val fileData = file.data
-                    val fileDataStr = fileData.toString("utf8")
+                    val fileDataBuffer = file.data
+                    val fileDataString = fileDataBuffer.toString("utf8")
 
                     val sb = StringBuilder()
                     with(sb) {
-                        append("fileName: $fileName")
-                        append("fileType: $fileType")
-                        append("fileData: $fileData")
-                        append("fileDataStr: $fileDataStr")
+                        append("fileName: $fileName, ")
+                        append("\n")
+                        append("fileType: $fileType, ")
+                        append("\n")
+                        append("fileDataBuffer.length: ${fileDataBuffer.length} bytes, ")
+                        append("\nfileDataString:\n")
+                        append("$fileDataString")
                     }
-                    res.send(sb.toString())
+
+                    val savedFileName = "uploaded.csv"
+                    file.mv(savedFileName,
+                            { err ->
+                                res.type("text/plain")
+                                if (err == null) {
+                                    processFile(res, savedFileName)
+                                    //res.send(sb.toString())
+                                } else {
+                                    res.send("File could not be written on server")
+                                }
+                            }
+                    )
+
                 }
             }
     )

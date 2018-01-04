@@ -1,5 +1,7 @@
 # Kotlin compiler output goes here
 lib
+package-lock.json
+uploaded.csv
 
 # Created by https://www.gitignore.io/api/node,intellij+all
 
