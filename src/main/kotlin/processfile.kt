@@ -35,7 +35,6 @@ fun processFile(res: dynamic, savedFileName: String) {
             { row ->
                 val record = convertRowToRecord(row)
                 listOfRows.add(record)
-                //println(record)
             }
     )
     reader.addListener(
