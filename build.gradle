@@ -17,17 +17,31 @@
 group 'com.sample.kotlinserver'
 version '1.0-SNAPSHOT'
 
+// More info on Node plugin
+// https://github.com/srs/gradle-node-plugin/blob/master/docs/node.md
+
 buildscript {
     ext.kotlin_version = '1.2.10'
     repositories {
         mavenCentral()
+
+        // gradle-node-plugin
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // gradle-node-plugin
+        classpath "com.moowork.gradle:gradle-node-plugin:1.2.0"
     }
 }
 
 apply plugin: 'kotlin2js'
+
+// gradle-node-plugin
+apply plugin: "com.moowork.node"
 
 repositories {
     mavenCentral()
@@ -42,3 +56,15 @@ compileKotlin2Js {
     kotlinOptions.moduleKind = "commonjs"
     kotlinOptions.sourceMap = true
 }
+
+// Tasks
+
+// gradle-node-plugin
+task runNodeServer(type: NodeTask) {
+    script = file('lib/index.js')
+    ignoreExitValue = true
+}
+
+task stage(dependsOn: ['runNodeServer', 'build', 'npmInstall'])
+runNodeServer.mustRunAfter npmInstall
+npmInstall.mustRunAfter build
