@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/kotlinserver_js.iml" filepath="$PROJECT_DIR$/kotlinserver_js.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlinserver_js_main.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlinserver_js_main.iml" group="kotlinserver_js" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kotlinserver_js_test.iml" filepath="$PROJECT_DIR$/.idea/modules/kotlinserver_js_test.iml" group="kotlinserver_js" />
+    </modules>
+  </component>
+</project>
