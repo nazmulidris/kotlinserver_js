@@ -65,4 +65,4 @@ task runNodeServer(type: NodeTask) {
     ignoreExitValue = true
 }
 
-task stage(dependsOn: ['npmSetup', 'nodeSetup', 'npmInstall', 'build'])
+task stage(dependsOn: ['npmInstall', 'build'])
