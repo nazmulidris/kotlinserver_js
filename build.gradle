@@ -65,6 +65,8 @@ task runNodeServer(type: NodeTask) {
     ignoreExitValue = true
 }
 
-task stage(dependsOn: ['runNodeServer', 'build', 'npmInstall'])
-runNodeServer.mustRunAfter npmInstall
-npmInstall.mustRunAfter build
+task stage(dependsOn: ['runNodeServer', 'build', 'npmInstall', 'nodeSetup', 'npmSetup'])
+runNodeServer.shouldRunAfter build
+build.shouldRunAfter npmInstall
+npmInstall.shouldRunAfter nodeSetup
+nodeSetup.shouldRunAfter npmSetup
